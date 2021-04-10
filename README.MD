@@ -2,16 +2,17 @@
 
 ## How to run the code
 
-1. Using Google Colab (fastest performance) -
+1. Using Google Colab (fastest performance, recommended) -
 	
 	- Open [Google Colab](https://colab.research.google.com/drive/1zZHfFcNO0kKhvA38sM7M5QG6SIqEWSlx?usp=sharing)
-	- Upload the datasets in the repository to the **/content/** of colab disk (note mentioned folder is default folder in colab disk, so no need to change any directory)
 	- Switch to GPU for faster performance
+	- Upload the datasets in the repository to the **/content/** of colab disk (note mentioned folder is default folder in colab disk, so no need to change any directory)
 	- Run the notebook as it is
 
 2. On local machine
 	- Clone this repository on your local machine
 	- Change directory to the root of the cloned repository
+	- Run ```pip3 install -r requirements.txt``` to install dependencies
 	- Run the code on terminal as ```python3 task.py .```
 
 3. Using Google Colab, without any uploads (slower performance) -
