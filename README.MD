@@ -5,7 +5,7 @@
 1. Using Google Colab (fastest performance) -
 	
 	- Open [Google Colab](https://colab.research.google.com/drive/1zZHfFcNO0kKhvA38sM7M5QG6SIqEWSlx?usp=sharing)
-	- Upload the datasets in the repository to the **root** of colab disk (note mentioned folder is root '/')
+	- Upload the datasets in the repository to the **/content/** of colab disk (note mentioned folder is default folder in colab disk, so no need to change anything)
 	- Run the notebook as it is
 	- Switch to GPU for faster performance
 
@@ -26,12 +26,12 @@
 Input dataset contains binary images of characters and digits of resolution 1100 x 900. These training images are too large to be given as input, so as a preprocessing step we do the following -
 
 1. Find the contour of the characters
-2. Crop out these characters and remmove the white regions
+2. Crop out these characters and remove the white regions
 3. Paste these characters on a new image of size 28 x 28 with padding of 4 px
 4. Invert the colors to make the dataset in accordance with the MNIST dataset
 5. Save this modified dataset
 
-Also the images from 0 - 9 from this processed dataset were taken to create a newer dataset, zipped added to the repository and also the Google Colab disk.
+Note - We are saving our processed dataset over here so as to fasten up the training and reduce the redundant work over the epochs, but this step can be added easily as a part of the transform pipeline
 
 Given dataset was normalized with mean 0.5 and standard deviation 0.5 before passing through the network. 
 
@@ -66,7 +66,9 @@ Final accuracy on train dataset - 97.78225806451613%
 
 ## 2. Training on images 0 - 9
 
-Next we train on the same dataset with the data points consisting of only 10 characters. This time the cnn architecture is modified a bit and the number of parameters in the last fc layers are decreased as mentioned above in the CNN architecture. Finally the model is trained for 50 epochs.
+We create another zip file from the given training dataset but with data points only consisting of 0 - 9 characters. This additional zip file has been included in the repository. Pre-processing as mentioned above is also applied to this dataset.
+
+ This time the cnn architecture is modified a bit and the number of parameters in the last fc layers are decreased as mentioned above in the CNN architecture. Finally the model is trained for 50 epochs.
 
 ![alt text](https://raw.githubusercontent.com/GauravPnt/midas-submission/master/assets/2-accuracy-char.png "Accuracy on train dataset") ![alt text](https://raw.githubusercontent.com/GauravPnt/midas-submission/master/assets/2-loss-char.png "Loss on train dataset")
 

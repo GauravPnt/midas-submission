@@ -148,13 +148,16 @@ Apply pre-processing on the provided dataset -
 """
 
 cp = Crop(28)
-cropped_path = cp.crop_all('train')
+cropped_path_62 = cp.crop_all('train')
 
 """
-This zip has been created manually from the cropped and processed data and contains the data points for digits 0 - 9 only
+This zip has been created manually from the trainining data and contains the data points for digits 0 - 9 only
 """
 
 unzip('train_digits.zip')
+
+cp = Crop(28)
+cropped_path_10 = cp.crop_all('train_digits')
 
 unzip('mnistTask3.zip')
 
@@ -404,21 +407,21 @@ print(mnist_pre_trained.model)
 
 high_res = Model(100)
 epochs_plot, accuracy_plot, loss_plot = high_res.train_validate(
-    cropped_path, validation_split=0.1)
+    cropped_path_62, validation_split=0.1)
 plot(epochs_plot, loss_plot, accuracy_plot)
 
 """Train with the complete training data since we have now determined our CNN architecture"""
 
 high_res = Model(100)
 epochs_plot, accuracy_plot, loss_plot = high_res.train_validate(
-    cropped_path)
+    cropped_path_62)
 plot(epochs_plot, loss_plot, accuracy_plot)
 
 """Tweak the final fc layers of the CNN architecture and train on the provided datasets but now with the dataset containing only 0-9 characters"""
 
 mnist_pre_trained = Model(fc=FC_10)
 epochs_plot, accuracy_plot, loss_plot = mnist_pre_trained.train_validate(
-    'train_digits', validation_split=0)
+    cropped_path_10, validation_split=0)
 plot(epochs_plot, loss_plot, accuracy_plot)
 
 """Retrain this pre trained model with the mnist data set"""
