@@ -46,9 +46,10 @@ The layers in the suggested architecture are as follows -
 3. 2 x 2 max pooling layer
 4. 128 3 x 3 filters with no padding
 5. 128 3 x 3 filters with no padding
-6. fully connected layer of 1024 neurons for 62 char recognition and of 512 neurons for 10 char recognition
-7. fully connected layer of 512 neurons for 62 char recognition and of 128 neurons for 10 char recognition
-8. fully connected layer of 62 neurons for 62 char recognition and of 10 neurons for 10 char recognition
+6. 2 x 2 max pooling layer
+7. fully connected layer of 1024 neurons for 62 char recognition and of 512 neurons for 10 char recognition
+8. fully connected layer of 512 neurons for 62 char recognition and of 128 neurons for 10 char recognition
+9. fully connected layer of 62 neurons for 62 char recognition and of 10 neurons for 10 char recognition
 
 Activation functions used in each of the intermediate layer is ReLU, with batch normalization being applied before every layer for faster convergence and dropout with p=0.25 being applied before every fc layer to prevent overfitting
 
