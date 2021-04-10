@@ -142,9 +142,10 @@ unzip('trainPart1.zip')
 """
 Apply pre-processing on the provided dataset -
 
-1.   Crop the images in the dataset to size 28 x 28 by applying rectangular bounding box on the images
-2.   Invert the color of the image so as to match with the dataset of mnist
-3.   Finally save these in a separate folder and provide its path
+1.  Crop the images in the dataset so as to remove the white regions and only focus on the characters
+2.  Invert the color of the image so as to match with the dataset of mnist
+3.  Resize the images maintaining the aspect ratio, so as to paste on an empty canvas of size 28 x 28
+4.  Finally save these in a separate folder and return its path
 """
 
 cp = Crop(28)
@@ -215,7 +216,7 @@ train - train the model from the given trainloader
 test - test the model from the given testloader
 test_mnist - test the model on MNIST test set
 save - save the checkpoint
-train_validate - do train, validate split and run the code for specified number of epochs and provide accuracy on the test and validate dataset
+train_validate - do train, validate split and run the code for specified number of epochs and provide accuracy on the train and validate dataset
 """
 
 
@@ -386,6 +387,7 @@ def plot(epochs_plot, loss_plot, accuracy_plot):
     plt.show()
 
     plt.plot(epochs_plot, loss_plot, label="Loss plot")
+    plt.xlabel('Epochs')
 
     plt.legend()
     plt.show()
@@ -393,7 +395,7 @@ def plot(epochs_plot, loss_plot, accuracy_plot):
 
 """Print out the architecture for 62 char model"""
 
-high_res = Model()
+high_res = Model(fc=FC_62)
 print('Parameters for 62 char model')
 print(high_res.model)
 
@@ -454,7 +456,7 @@ mnist_random.test_mnist()
 
 destroy_mnist_pretrained = Model(epochs=EP_10, fc=FC_10)
 destroy_mnist_pretrained.load(
-    f'{root_dir}/models/train_digits_modified-{EP_10-1}.pth')
+    f'{root_dir}/models/train_digits_modified-{EP_10 - 1}.pth')
 epochs_plot, accuracy_plot, loss_plot = destroy_mnist_pretrained.train_validate(
     name='mnistTask', mnist=False, batch_size=256, validation_split=0, save_name='destroy_pretrained_mnist')
 plot(epochs_plot, loss_plot, accuracy_plot)

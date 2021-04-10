@@ -26,10 +26,11 @@
 Input dataset contains binary images of characters and digits of resolution 1100 x 900. These training images are too large to be given as input, so as a preprocessing step we do the following -
 
 1. Find the contour of the characters
-2. Crop out these characters and remove the white regions
-3. Paste these characters on a new image of size 28 x 28 with padding of 4 px
-4. Invert the colors to make the dataset in accordance with the MNIST dataset
-5. Save this modified dataset
+2. Crop out these characters so as to remove the white regions
+3. Resize the characters while maintaining aspect raio
+4. Paste these characters on a new image of size 28 x 28 with padding of 4 px
+5. Invert the colors to make the dataset in accordance with the MNIST dataset
+6. Save this modified dataset
 
 Note - We are saving our processed dataset over here so as to fasten up the training and reduce the redundant work over the epochs, but this step can be added easily as a part of the transform pipeline.
 
