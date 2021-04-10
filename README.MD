@@ -6,8 +6,8 @@
 	
 	- Open [Google Colab](https://colab.research.google.com/drive/1zZHfFcNO0kKhvA38sM7M5QG6SIqEWSlx?usp=sharing)
 	- Upload the datasets in the repository to the **/content/** of colab disk (note mentioned folder is default folder in colab disk, so no need to change any directory)
-	- Run the notebook as it is
 	- Switch to GPU for faster performance
+	- Run the notebook as it is
 
 2. On local machine
 	- Clone this repository on your local machine
@@ -26,7 +26,7 @@
 Input dataset contains binary images of characters and digits of resolution 1100 x 900. These training images are too large to be given as input, so as a preprocessing step we do the following -
 
 1. Find the contour of the characters
-2. Crop out these characters so as to remove the white regions
+2. Crop out these characters so as to remove the extra white background
 3. Resize the characters while maintaining aspect raio
 4. Paste these characters on a new image of size 28 x 28 with padding of 4 px
 5. Invert the colors to make the dataset in accordance with the MNIST dataset
@@ -52,7 +52,7 @@ The layers in the suggested architecture are as follows -
 8. fully connected layer of 512 neurons for 62 char recognition and of 128 neurons for 10 char recognition
 9. fully connected layer of 62 neurons for 62 char recognition and of 10 neurons for 10 char recognition
 
-Activation functions used in each of the intermediate layer is ReLU, with batch normalization being applied before every layer for faster convergence and dropout with p=0.25 being applied before every fc layer to prevent overfitting
+Activation functions used in each of the intermediate layer is ReLU, with batch normalization being applied before every layer for faster convergence and dropout with p=0.25 being applied before every fc layer to prevent overfitting. AdamW was used as the optimizer to achieve faster convergence.
 
 ### Dataset Overview
 
