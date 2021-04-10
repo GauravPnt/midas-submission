@@ -403,23 +403,28 @@ mnist_pre_trained = Model(fc=FC_10)
 print('Parameters for 10 char model')
 print(mnist_pre_trained.model)
 
+"""Set epochs for training of 62 and 10 char model"""
+
+EP_62 = 100
+EP_10 = 50
+
 """Train the model on the 62 characters dataset provided with 9:1 train - validation split so as to check how good the cnn architecture is"""
 
-high_res = Model(100)
+high_res = Model(epochs=EP_62, fc=FC_62)
 epochs_plot, accuracy_plot, loss_plot = high_res.train_validate(
     cropped_path_62, validation_split=0.1)
 plot(epochs_plot, loss_plot, accuracy_plot)
 
 """Train with the complete training data since we have now determined our CNN architecture"""
 
-high_res = Model(100)
+high_res = Model(epochs=EP_62, fc=FC_62)
 epochs_plot, accuracy_plot, loss_plot = high_res.train_validate(
     cropped_path_62)
 plot(epochs_plot, loss_plot, accuracy_plot)
 
 """Tweak the final fc layers of the CNN architecture and train on the provided datasets but now with the dataset containing only 0-9 characters"""
 
-mnist_pre_trained = Model(fc=FC_10)
+mnist_pre_trained = Model(epochs=EP_10, fc=FC_10)
 epochs_plot, accuracy_plot, loss_plot = mnist_pre_trained.train_validate(
     cropped_path_10, validation_split=0)
 plot(epochs_plot, loss_plot, accuracy_plot)
@@ -436,7 +441,7 @@ mnist_pre_trained.test_mnist()
 
 """Train the same CNN architecture but this time with random initialization on the MNIST dataset"""
 
-mnist_random = Model(fc=FC_10)
+mnist_random = Model(epochs=EP_10, fc=FC_10)
 epochs_plot, accuracy_plot, loss_plot = mnist_random.train_validate(
     name='mnist_vanilla', mnist=True, batch_size=256, save_name='mnist_vanilla')
 plot(epochs_plot, loss_plot, accuracy_plot)
@@ -447,9 +452,9 @@ mnist_random.test_mnist()
 
 """Train the pre trained network on the shuffled MNIST dataset"""
 
-destroy_mnist_pretrained = Model(fc=FC_10)
+destroy_mnist_pretrained = Model(epochs=EP_10, fc=FC_10)
 destroy_mnist_pretrained.load(
-    '/content/drive/MyDrive/Colab Notebooks/models/train_digits-49.pth')
+    f'{root_dir}/models/train_digits_modified-{EP_10-1}.pth')
 epochs_plot, accuracy_plot, loss_plot = destroy_mnist_pretrained.train_validate(
     name='mnistTask', mnist=False, batch_size=256, validation_split=0, save_name='destroy_pretrained_mnist')
 plot(epochs_plot, loss_plot, accuracy_plot)
@@ -460,7 +465,7 @@ destroy_mnist_pretrained.test_mnist()
 
 """Train a randomly initialized CNN on shuffled MNIST dataset"""
 
-destroy_mnist_random = Model(fc=FC_10)
+destroy_mnist_random = Model(epochs=EP_10, fc=FC_10)
 epochs_plot, accuracy_plot, loss_plot = destroy_mnist_random.train_validate(
     name='mnistTask', mnist=False, batch_size=256, validation_split=0, save_name='destroy_random_mnist')
 plot(epochs_plot, loss_plot, accuracy_plot)

@@ -5,7 +5,7 @@
 1. Using Google Colab (fastest performance) -
 	
 	- Open [Google Colab](https://colab.research.google.com/drive/1zZHfFcNO0kKhvA38sM7M5QG6SIqEWSlx?usp=sharing)
-	- Upload the datasets in the repository to the **/content/** of colab disk (note mentioned folder is default folder in colab disk, so no need to change anything)
+	- Upload the datasets in the repository to the **/content/** of colab disk (note mentioned folder is default folder in colab disk, so no need to change any directory)
 	- Run the notebook as it is
 	- Switch to GPU for faster performance
 
@@ -31,9 +31,9 @@ Input dataset contains binary images of characters and digits of resolution 1100
 4. Invert the colors to make the dataset in accordance with the MNIST dataset
 5. Save this modified dataset
 
-Note - We are saving our processed dataset over here so as to fasten up the training and reduce the redundant work over the epochs, but this step can be added easily as a part of the transform pipeline
+Note - We are saving our processed dataset over here so as to fasten up the training and reduce the redundant work over the epochs, but this step can be added easily as a part of the transform pipeline.
 
-Given dataset was normalized with mean 0.5 and standard deviation 0.5 before passing through the network. 
+Given dataset was normalized with mean 0.5 and standard deviation 0.5 before passing through the network.
 
 ### Architecture of CNN
 
